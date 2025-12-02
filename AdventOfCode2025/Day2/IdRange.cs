@@ -1,5 +1,3 @@
-using System.Text.RegularExpressions;
-
 namespace AdventOfCode2025.Day2;
 
 public readonly partial record struct IdRange(long Start, long End)

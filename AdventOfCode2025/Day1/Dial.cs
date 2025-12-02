@@ -1,15 +1,14 @@
 ﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace AdventOfCode2025.Day1;
 
-public partial class Part1
+public partial class Dial
 {
     private int position = 50;
 
     public int ZeroCounter { get; private set; }
 
-    public void ApplyTurn(string turn)
+    public void ApplyTurnByStop(string turn)
     {
         position += ParseTurn(turn);
         position %= 100;
@@ -19,6 +18,24 @@ public partial class Part1
         {
             ZeroCounter++;
         }
+    }
+
+    public void ApplyTurnByTick(string turn)
+    {
+        var inc = ParseTurn(turn);
+        var (fullTurns, remainder) = Math.DivRem(inc, 100);
+        ZeroCounter += Math.Abs(fullTurns);
+        var nextPosition = position + remainder;
+        switch (nextPosition)
+        {
+            case 0:
+            case >= 100:
+            case < 0 when position > 0:
+                ZeroCounter++;
+                break;
+        }
+
+        position = (nextPosition + 100) % 100;
     }
 
     private static int ParseTurn(string turn)

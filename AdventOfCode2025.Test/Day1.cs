@@ -8,26 +8,26 @@ public class Day1(ITestOutputHelper output)
     [Fact]
     public async Task Part1()
     {
-        var part1 = new Part1();
+        var dial = new Dial();
         await foreach (var line in ReadInput.Lines("d1"))
         {
-            part1.ApplyTurn(line);
+            dial.ApplyTurnByStop(line);
         }
 
-        output.WriteLine($"{part1.ZeroCounter}");
-        Assert.Equal(992, part1.ZeroCounter);
+        output.WriteLine($"{dial.ZeroCounter}");
+        Assert.Equal(992, dial.ZeroCounter);
     }
 
     [Fact]
     public async Task Part2()
     {
-        var part2 = new Part2();
+        var dial = new Dial();
         await foreach (var line in ReadInput.Lines("d1"))
         {
-            part2.ApplyTurn(line);
+            dial.ApplyTurnByTick(line);
         }
 
-        output.WriteLine($"{part2.ZeroCounter}");
-        Assert.Equal(6133, part2.ZeroCounter);
+        output.WriteLine($"{dial.ZeroCounter}");
+        Assert.Equal(6133, dial.ZeroCounter);
     }
 }
