@@ -8,28 +8,26 @@ public class Day3(ITestOutputHelper output)
     [Fact]
     public async Task Part1()
     {
-        var banks = new List<BatteryBank>();
-        await foreach (var line in ReadInput.Lines("d3"))
+        var acc = new Accumulator();
+        await foreach (var bank in ReadInput.Lines("d3").Select(BatteryBank.Parse))
         {
-            banks.Add(BatteryBank.Parse(line));
+            acc.Add(bank, 2);
         }
 
-        var sum = banks.Sum(x => x.MaxJoltage(2));
-        output.WriteLine($"{sum}");
-        Assert.Equal(17443, sum);
+        output.WriteLine($"{acc.Total}");
+        Assert.Equal(17443, acc.Total);
     }
 
     [Fact]
     public async Task Part2()
     {
-        var banks = new List<BatteryBank>();
-        await foreach (var line in ReadInput.Lines("d3"))
+        var acc = new Accumulator();
+        await foreach (var bank in ReadInput.Lines("d3").Select(BatteryBank.Parse))
         {
-            banks.Add(BatteryBank.Parse(line));
+            acc.Add(bank, 12);
         }
 
-        var sum = banks.Sum(x => x.MaxJoltage(12));
-        output.WriteLine($"{sum}");
-        Assert.Equal(172167155440541, sum);
+        output.WriteLine($"{acc.Total}");
+        Assert.Equal(172167155440541, acc.Total);
     }
 }
