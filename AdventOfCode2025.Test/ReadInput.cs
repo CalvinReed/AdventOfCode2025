@@ -7,6 +7,11 @@ public static class ReadInput
         return File.ReadLinesAsync($"./Input/{name}");
     }
 
+    public static Task<string[]> AllLines(string name)
+    {
+        return File.ReadAllLinesAsync($"./Input/{name}");
+    }
+
     public static Task<string> AllText(string name)
     {
         return File.ReadAllTextAsync($"./Input/{name}");
