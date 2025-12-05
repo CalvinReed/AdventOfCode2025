@@ -1,5 +1,4 @@
 using AdventOfCode2025.Day3;
-using Xunit.Abstractions;
 
 namespace AdventOfCode2025.Test;
 
@@ -8,8 +7,9 @@ public class Day3(ITestOutputHelper output)
     [Fact]
     public async Task Part1()
     {
+        var lines = await ReadInput.AllLines("d3");
         var acc = new Accumulator();
-        await foreach (var bank in ReadInput.Lines("d3").Select(BatteryBank.Parse))
+        foreach (var bank in lines.Select(BatteryBank.Parse))
         {
             acc.Add(bank, 2);
         }
@@ -21,8 +21,9 @@ public class Day3(ITestOutputHelper output)
     [Fact]
     public async Task Part2()
     {
+        var lines = await ReadInput.AllLines("d3");
         var acc = new Accumulator();
-        await foreach (var bank in ReadInput.Lines("d3").Select(BatteryBank.Parse))
+        foreach (var bank in lines.Select(BatteryBank.Parse))
         {
             acc.Add(bank, 12);
         }

@@ -18,10 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Using Include="Xunit"/>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\AdventOfCode2025\AdventOfCode2025.csproj" />
     </ItemGroup>
 

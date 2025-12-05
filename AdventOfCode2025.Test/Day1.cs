@@ -1,5 +1,4 @@
 ﻿using AdventOfCode2025.Day1;
-using Xunit.Abstractions;
 
 namespace AdventOfCode2025.Test;
 
@@ -8,10 +7,12 @@ public class Day1(ITestOutputHelper output)
     [Fact]
     public async Task Part1()
     {
+        var input = await ReadInput.AllText("d1");
+        var turns = ParseInput.Turns(input);
         var dial = new Dial();
-        await foreach (var line in ReadInput.Lines("d1"))
+        foreach (var turn in turns)
         {
-            dial.ApplyTurnByStop(line);
+            dial.ApplyTurnByStop(turn);
         }
 
         output.WriteLine($"{dial.ZeroCounter}");
@@ -21,10 +22,12 @@ public class Day1(ITestOutputHelper output)
     [Fact]
     public async Task Part2()
     {
+        var input = await ReadInput.AllText("d1");
+        var turns = ParseInput.Turns(input);
         var dial = new Dial();
-        await foreach (var line in ReadInput.Lines("d1"))
+        foreach (var turn in turns)
         {
-            dial.ApplyTurnByTick(line);
+            dial.ApplyTurnByTick(turn);
         }
 
         output.WriteLine($"{dial.ZeroCounter}");

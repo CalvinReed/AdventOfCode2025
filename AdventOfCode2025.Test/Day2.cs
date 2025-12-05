@@ -1,5 +1,4 @@
 using AdventOfCode2025.Day2;
-using Xunit.Abstractions;
 
 namespace AdventOfCode2025.Test;
 
