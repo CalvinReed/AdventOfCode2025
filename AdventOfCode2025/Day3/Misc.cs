@@ -1,10 +1,8 @@
 namespace AdventOfCode2025.Day3;
 
-public class Accumulator
+public static class Misc
 {
-    public long Total { get; private set; }
-
-    public void Add(BatteryBank bank, int pickCount)
+    public static long MaxPower(this BatteryBank bank, int pickCount)
     {
         var slice = bank.Batteries.AsSpan();
         var total = 0L;
@@ -16,7 +14,7 @@ public class Accumulator
             slice = slice[(maxIndex + 1)..];
         }
 
-        Total += total;
+        return total;
     }
 
     private static int Max(ReadOnlySpan<int> span)

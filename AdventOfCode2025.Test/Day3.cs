@@ -8,27 +8,21 @@ public class Day3(ITestOutputHelper output)
     public async Task Part1()
     {
         var lines = await ReadInput.AllLines("d3");
-        var acc = new Accumulator();
-        foreach (var bank in lines.Select(BatteryBank.Parse))
-        {
-            acc.Add(bank, 2);
-        }
-
-        output.WriteLine($"{acc.Total}");
-        Assert.Equal(17443, acc.Total);
+        var total = lines
+            .Select(BatteryBank.Parse)
+            .Sum(x => x.MaxPower(2));
+        output.WriteLine($"{total}");
+        Assert.Equal(17443, total);
     }
 
     [Fact]
     public async Task Part2()
     {
         var lines = await ReadInput.AllLines("d3");
-        var acc = new Accumulator();
-        foreach (var bank in lines.Select(BatteryBank.Parse))
-        {
-            acc.Add(bank, 12);
-        }
-
-        output.WriteLine($"{acc.Total}");
-        Assert.Equal(172167155440541, acc.Total);
+        var total = lines
+            .Select(BatteryBank.Parse)
+            .Sum(x => x.MaxPower(12));
+        output.WriteLine($"{total}");
+        Assert.Equal(172167155440541, total);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 namespace AdventOfCode2025.Day3;
 
 public record BatteryBank(ImmutableArray<int> Batteries)

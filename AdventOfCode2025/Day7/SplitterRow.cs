@@ -1,32 +1,15 @@
-using System.Collections.Immutable;
-
 namespace AdventOfCode2025.Day7;
 
-public record SplitterRow(IImmutableSet<int> Indices)
+public record SplitterRow(ImmutableArray<bool> HasSplitter)
 {
     public static SplitterRow Parse(string row)
     {
-        return new SplitterRow(AllIndices(row, '^'));
-    }
-
-    private static ImmutableHashSet<int> AllIndices(ReadOnlySpan<char> row, char ch)
-    {
-        var builder = ImmutableHashSet.CreateBuilder<int>();
-        var slice = row;
-        while (!slice.IsEmpty)
+        var builder = ImmutableArray.CreateBuilder<bool>(row.Length);
+        foreach (var ch in row)
         {
-            var i = slice.IndexOf(ch);
-            if (i >= 0)
-            {
-                builder.Add(i + row.Length - slice.Length);
-                slice = slice[(i + 1)..];
-            }
-            else
-            {
-                slice = ReadOnlySpan<char>.Empty;
-            }
+            builder.Add(ch == '^');
         }
 
-        return builder.ToImmutable();
+        return new SplitterRow(builder.MoveToImmutable());
     }
 }

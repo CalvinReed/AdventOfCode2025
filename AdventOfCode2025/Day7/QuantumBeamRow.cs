@@ -1,13 +1,12 @@
-using System.Collections.Immutable;
-
 namespace AdventOfCode2025.Day7;
 
-public record QuantumBeamRow(ImmutableDictionary<int, long> Indices)
+public record QuantumBeamRow(ImmutableArray<long> BeamCount)
 {
     public static QuantumBeamRow Parse(string row)
     {
-        var i = row.IndexOf('S');
-        var pair = KeyValuePair.Create(i, 1L);
-        return new QuantumBeamRow([pair]);
+        var builder = ImmutableArray.CreateBuilder<long>(row.Length);
+        builder.Count = builder.Capacity;
+        builder[row.IndexOf('S')] = 1;
+        return new QuantumBeamRow(builder.MoveToImmutable());
     }
 }

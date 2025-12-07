@@ -8,27 +8,23 @@ public class Day2(ITestOutputHelper output)
     public async Task Part1()
     {
         var input = await ReadInput.AllText("d2");
-        var acc = new Accumulator();
-        foreach (var range in IdRange.ParseBatch(input))
-        {
-            acc.Add(range, IdRegex.RepeatTwice());
-        }
-
-        output.WriteLine($"{acc.Total}");
-        Assert.Equal(19219508902, acc.Total);
+        var total = IdRange.ParseBatch(input)
+            .SelectMany(x => x.Enumerate())
+            .Where(x => Misc.IsMatch(x, IdRegex.RepeatTwice()))
+            .Sum();
+        output.WriteLine($"{total}");
+        Assert.Equal(19219508902, total);
     }
 
     [Fact]
     public async Task Part2()
     {
         var input = await ReadInput.AllText("d2");
-        var acc = new Accumulator();
-        foreach (var range in IdRange.ParseBatch(input))
-        {
-            acc.Add(range, IdRegex.RepeatMany());
-        }
-
-        output.WriteLine($"{acc.Total}");
-        Assert.Equal(27180728081, acc.Total);
+        var total = IdRange.ParseBatch(input)
+            .SelectMany(x => x.Enumerate())
+            .Where(x => Misc.IsMatch(x, IdRegex.RepeatMany()))
+            .Sum();
+        output.WriteLine($"{total}");
+        Assert.Equal(27180728081, total);
     }
 }

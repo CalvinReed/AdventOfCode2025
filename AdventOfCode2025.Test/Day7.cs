@@ -12,7 +12,7 @@ public class Day7(ITestOutputHelper output)
         var result = lines
             .Skip(1)
             .Select(SplitterRow.Parse)
-            .Aggregate(seed, RowOperation.Progress);
+            .Aggregate(seed, Misc.Propagate);
         output.WriteLine($"{result.SplitCount}");
         Assert.Equal(1562, result.SplitCount);
     }
@@ -25,8 +25,8 @@ public class Day7(ITestOutputHelper output)
         var result = lines
             .Skip(1)
             .Select(SplitterRow.Parse)
-            .Aggregate(seed, RowOperation.Progress);
-        var sum = result.Indices.Values.Sum();
+            .Aggregate(seed, Misc.Propagate);
+        var sum = result.BeamCount.Sum();
         output.WriteLine($"{sum}");
         Assert.Equal(24292631346665, sum);
     }
