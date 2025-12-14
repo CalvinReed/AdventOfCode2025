@@ -1,6 +1,6 @@
 using System.Diagnostics.Contracts;
 
-namespace AdventOfCode2025;
+namespace AdventOfCode2025.Day8;
 
 public sealed class SymmetricMatrix<T>(int order)
 {
